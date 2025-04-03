@@ -1,33 +1,45 @@
 import React, { useState } from "react";
 import styles from "./Calendar.module.css";
 import {
-  format,
   startOfMonth,
   endOfMonth,
   eachDayOfInterval,
+  format,
+  subMonths,
+  addMonths,
   isToday,
 } from "date-fns";
 
 const Calendar = () => {
-  const [_selectedDate, setSelectedDate] = useState(null);
-  const today = new Date();
+  const [currentDate, setCurrentDate] = useState(new Date());
 
-  const daysInMonth = eachDayOfInterval({
-    start: startOfMonth(today),
-    end: endOfMonth(today),
-  });
+  // Получаем диапазон дней для текущего месяца
+  const firstDay = startOfMonth(currentDate);
+  const lastDay = endOfMonth(currentDate);
+  const days = eachDayOfInterval({ start: firstDay, end: lastDay });
 
   return (
-    <div className={styles.calendar}>
-      {daysInMonth.map((day) => (
-        <div
-          key={day.toString()}
-          className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
-          onClick={() => setSelectedDate(day)}
-        >
-          {format(day, "d")}
-        </div>
-      ))}
+    <div className={styles.calendarContainer}>
+      <div className={styles.header}>
+        <button onClick={() => setCurrentDate(subMonths(currentDate, 1))}>
+          ◀
+        </button>
+        <h2>{format(currentDate, "MMMM yyyy")}</h2>
+        <button onClick={() => setCurrentDate(addMonths(currentDate, 1))}>
+          ▶
+        </button>
+      </div>
+
+      <div className={styles.calendar}>
+        {days.map((day) => (
+          <div
+            key={day}
+            className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
+          >
+            {format(day, "d")}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

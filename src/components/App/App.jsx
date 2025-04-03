@@ -5,7 +5,7 @@ import styles from "./App.module.css";
 const App = () => {
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Планировщик задач</h1>
+      {/* <h1 className={styles.title}>Планировщик задач</h1> */}
       <Calendar />
     </div>
   );
