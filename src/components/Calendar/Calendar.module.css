@@ -25,18 +25,18 @@
 
 .header button {
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid white;
+  /* border: 1px solid white; */
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 50%;
   transition: 0.3s;
 }
 
 .header button:hover {
-  background: white;
-  color: black;
+  background: rgba(234, 131, 131, 0.1);
+  color: rgb(151, 140, 140);
 }
 
 .calendar {
@@ -48,6 +48,7 @@
   border-radius: 12px;
   box-shadow: 0px 4px 20px rgba(255, 255, 255, 0.3);
   max-width: 600px;
+  height: 420px;
 }
 
 .day {
@@ -78,5 +79,5 @@
   color: white;
   font-weight: bold;
   box-shadow: 0px 2px 15px rgba(0, 123, 255, 0.7);
-  border: 2px solid white;
+  /* border: 2px solid white; */
 }
