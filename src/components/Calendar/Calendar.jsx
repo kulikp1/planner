@@ -13,7 +13,6 @@ import {
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);
@@ -24,15 +23,6 @@ const Calendar = () => {
 
   return (
     <div className={styles.container}>
-      {/* Блок выбранной даты */}
-      {selectedDate && (
-        <div className={styles.selectedDateBlock}>
-          <h2>Выбранная дата</h2>
-          <p>{format(selectedDate, "dd MMMM yyyy")}</p>
-          <button onClick={() => setSelectedDate(null)}>Закрыть</button>
-        </div>
-      )}
-
       {/* Основной календарь */}
       <div className={styles.calendarContainer}>
         <div className={styles.header}>
@@ -76,7 +66,6 @@ const Calendar = () => {
             <div
               key={day}
               className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
-              onClick={() => setSelectedDate(day)}
             >
               {format(day, "d")}
             </div>

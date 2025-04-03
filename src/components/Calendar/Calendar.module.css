@@ -1,11 +1,12 @@
 .container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  gap: 40px;
-  background: black;
-  height: 100vh;
-  padding: 40px;
+  background: #181818;
+  height: 100vh; /* Высота на весь экран */
+  width: 100vw; /* Ширина на весь экран */
+  padding: 0; /* Убираем отступы */
+  margin: 0; /* Убираем отступы */
 }
 
 .selectedDateBlock {
@@ -39,16 +40,13 @@
   transition: 0.3s;
 }
 
-.selectedDateBlock button:hover {
-  background: #0056b3;
-}
-
 .calendarContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 95%;
-  max-width: 1400px; /* Сделали шире */
+  width: 100%;
+  max-width: 1400px; /* Можно увеличить, если нужно */
+  height: 90vh; /* Почти на весь экран */
 }
 
 .header {
@@ -56,7 +54,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 30px;
+  /* margin-bottom: 7px; */
 }
 
 .header h2 {
@@ -97,35 +95,38 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  gap: 2px;
   width: 100%;
-  height: 75%; /* Чуть меньше высота */
+  height: 100%; /* Растягиваем на весь экран */
 }
 
 .day,
 .emptyDay {
   width: 100%;
-  height: 110px; /* Уменьшили высоту */
+  height: 100px; /* Уменьшаем высоту, чтобы избежать наложения */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  font-weight: bold;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 10px;
+  font-size: 15px;
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box; /* Чтобы padding не влиял на размеры */
 }
 
-.day {
-  cursor: pointer;
+.day,
+.emptyDay {
+  height: 14vh; /* Равномерное распределение высоты */
+  min-height: 100px; /* Чтобы не было слишком маленьких ячеек */
+  font-size: 1.2rem; /* Подгоняем размер текста */
 }
 
 .day:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .today {
-  background: #007bff;
-  color: white;
-  box-shadow: 0px 2px 20px rgba(0, 123, 255, 0.7);
+  background: rgba(0, 123, 255, 0.3);
+  border: 2px solid #007bff;
+  box-shadow: 0px 2px 10px rgba(0, 123, 255, 0.5);
 }
