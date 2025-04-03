@@ -1,64 +1,36 @@
+/* Основні стилі */
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
   background: #181818;
-  height: 100vh; /* Высота на весь экран */
-  width: 100vw; /* Ширина на весь экран */
-  padding: 0; /* Убираем отступы */
-  margin: 0; /* Убираем отступы */
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
 }
 
-.selectedDateBlock {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
-  border-radius: 12px;
-  color: white;
-  text-align: center;
-  max-width: 250px;
-  font-size: 1.5rem;
-}
-
-.selectedDateBlock h2 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.selectedDateBlock p {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.selectedDateBlock button {
-  background: #007bff;
-  border: none;
-  padding: 15px 30px;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
+/* Контейнер календаря */
 .calendarContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1400px; /* Можно увеличить, если нужно */
-  height: 90vh; /* Почти на весь экран */
+  max-width: 1300px; /* Було 1400px, тепер менше */
+  height: 90vh; /* Було 90vh, трохи зменшили */
 }
 
+/* Заголовок */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* margin-bottom: 7px; */
+  margin-bottom: 20px;
 }
 
 .header h2 {
-  font-size: 2.8rem;
+  font-size: 2rem; /* Було 2.8rem, робимо менше */
   font-weight: bold;
   color: white;
   text-transform: uppercase;
@@ -68,7 +40,7 @@
   background: none;
   border: none;
   color: white;
-  font-size: 2.5rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 
@@ -76,6 +48,7 @@
   color: gray;
 }
 
+/* Дні тижня */
 .weekDays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -85,46 +58,45 @@
 
 .weekDay {
   text-align: center;
-  font-size: 1.4rem;
-  color: white;
+  font-size: 1.2rem;
+  color: gray;
   font-weight: bold;
   padding: 10px 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Сітка днів */
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   width: 100%;
-  height: 100%; /* Растягиваем на весь экран */
+  height: 100%;
 }
 
+/* Стилі для комірок */
 .day,
 .emptyDay {
   width: 100%;
-  height: 100px; /* Уменьшаем высоту, чтобы избежать наложения */
+  height: 12vh; /* Було 14vh, зменшили */
+  min-height: 80px; /* Було 100px, тепер менше */
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 10px;
-  font-size: 15px;
+  font-size: 1rem; /* Було 1.2rem, зробили дрібніше */
+  font-weight: bold;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-sizing: border-box; /* Чтобы padding не влиял на размеры */
-}
-
-.day,
-.emptyDay {
-  height: 14vh; /* Равномерное распределение высоты */
-  min-height: 100px; /* Чтобы не было слишком маленьких ячеек */
-  font-size: 1.2rem; /* Подгоняем размер текста */
+  box-sizing: border-box; /* Щоб padding не впливав на розміри */
+  cursor: pointer;
 }
 
 .day:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
+/* Виділення сьогоднішнього дня */
 .today {
   background: rgba(0, 123, 255, 0.3);
   border: 2px solid #007bff;
