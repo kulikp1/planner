@@ -14,7 +14,7 @@ import PlanModal from "../PlanModal/PlanModal";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
 
   const firstDay = startOfMonth(currentDate);
@@ -23,18 +23,16 @@ const Calendar = () => {
 
   const firstDayOffset = getDay(firstDay);
 
-  const openModal = (day) => {
-    setSelectedDate(day);
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    setSelectedDate(null);
-  };
-
   return (
     <div className={styles.container}>
+      {/* Модалка */}
+      <PlanModal
+        isOpen={modalOpen}
+        onRequestClose={() => setModalOpen(false)}
+        selectedDate={selectedDate}
+      />
+
+      {/* Основний календар */}
       <div className={styles.calendarContainer}>
         <div className={styles.header}>
           <button onClick={() => setCurrentDate(subMonths(currentDate, 1))}>
@@ -46,6 +44,7 @@ const Calendar = () => {
           </button>
         </div>
 
+        {/* Назви днів тижня */}
         <div className={styles.weekDays}>
           {[
             "Sunday",
@@ -62,30 +61,30 @@ const Calendar = () => {
           ))}
         </div>
 
+        {/* Сітка днів місяця */}
         <div className={styles.calendar}>
+          {/* Порожні клітинки перед першим днем */}
           {Array(firstDayOffset)
             .fill(null)
             .map((_, index) => (
               <div key={`empty-${index}`} className={styles.emptyDay}></div>
             ))}
 
+          {/* Дні місяця */}
           {days.map((day) => (
             <div
               key={day}
               className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
-              onClick={() => openModal(day)}
+              onClick={() => {
+                setSelectedDate(day);
+                setModalOpen(true);
+              }}
             >
               {format(day, "d")}
             </div>
           ))}
         </div>
       </div>
-
-      <PlanModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        selectedDate={selectedDate}
-      />
     </div>
   );
 };
