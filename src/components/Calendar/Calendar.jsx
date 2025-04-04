@@ -10,7 +10,7 @@ import {
   isToday,
   getDay,
 } from "date-fns";
-import AddModal from "../AddModal/AddModal";
+import PlanModal from "../PlanModal/PlanModal";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -81,7 +81,7 @@ const Calendar = () => {
         </div>
       </div>
 
-      <AddModal
+      <PlanModal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         selectedDate={selectedDate}

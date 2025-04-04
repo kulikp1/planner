@@ -3,7 +3,7 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 
-const AddModal = ({ isOpen, onRequestClose, selectedDate }) => {
+const PlanModal = ({ isOpen, onRequestClose, selectedDate }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -25,4 +25,4 @@ const AddModal = ({ isOpen, onRequestClose, selectedDate }) => {
   );
 };
 
-export default AddModal;
+export default PlanModal;
