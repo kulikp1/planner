@@ -25,20 +25,20 @@ const Calendar = () => {
 
   const dateKey = (date) => format(date, "yyyy-MM-dd");
 
-  // ✅ Завантажити плани при старті
+  // Завантажити плани з localStorage при старті
   useEffect(() => {
-    const stored = localStorage.getItem("plans");
-    if (stored) {
-      setPlans(JSON.parse(stored));
-    }
+    const storedPlans = JSON.parse(localStorage.getItem("plans")) || {};
+    console.log("Завантажені плани з localStorage:", storedPlans);
+
+    setPlans(storedPlans);
   }, []);
 
-  // ✅ Зберігати плани в localStorage при кожній зміні
+  // Зберігати плани в localStorage при кожній зміні
   useEffect(() => {
     localStorage.setItem("plans", JSON.stringify(plans));
   }, [plans]);
 
-  // ✅ Додати новий план
+  // Додати новий план
   const addPlan = (key, newPlan) => {
     setPlans((prev) => {
       const updated = {
@@ -49,6 +49,11 @@ const Calendar = () => {
     });
   };
 
+  // Оновити всі плани (редагування/видалення)
+  const updatePlans = (updated) => {
+    setPlans(updated);
+  };
+
   return (
     <div className={styles.container}>
       <PlanModal
@@ -56,6 +61,7 @@ const Calendar = () => {
         onRequestClose={() => setModalOpen(false)}
         selectedDate={selectedDate}
         addPlan={addPlan}
+        updatePlans={updatePlans}
       />
 
       <div className={styles.calendarContainer}>
@@ -100,7 +106,7 @@ const Calendar = () => {
 
             return (
               <div
-                key={day}
+                key={key}
                 className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
                 onClick={() => {
                   setSelectedDate(day);

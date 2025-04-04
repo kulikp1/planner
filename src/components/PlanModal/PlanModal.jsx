@@ -5,45 +5,55 @@ import { format } from "date-fns";
 
 Modal.setAppElement("#root");
 
-const PlanModal = ({ isOpen, onRequestClose, selectedDate, addPlan }) => {
+const PlanModal = ({
+  isOpen,
+  onRequestClose,
+  selectedDate,
+  addPlan,
+  updatePlans,
+}) => {
   const [planList, setPlanList] = useState([]);
   const [newPlan, setNewPlan] = useState("");
   const [editIndex, setEditIndex] = useState(null);
 
   const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
 
-  // Завантажити з localStorage (тільки для перегляду планів на дату)
   useEffect(() => {
     if (dateKey) {
-      const storedPlans = JSON.parse(localStorage.getItem("plans")) || {};
-      setPlanList(storedPlans[dateKey] || []);
+      const stored = JSON.parse(localStorage.getItem("plans")) || {};
+      setPlanList(stored[dateKey] || []);
     }
   }, [dateKey, isOpen]);
 
-  // Зберегти зміни локально у сховище при оновленні
-  const updatePlans = (updated) => {
+  const savePlans = (updatedList) => {
     const allPlans = JSON.parse(localStorage.getItem("plans")) || {};
-    allPlans[dateKey] = updated;
+
+    if (updatedList.length > 0) {
+      allPlans[dateKey] = updatedList;
+    } else {
+      delete allPlans[dateKey];
+    }
+
     localStorage.setItem("plans", JSON.stringify(allPlans));
-    setPlanList(updated);
+    setPlanList(updatedList);
+    updatePlans(allPlans);
   };
 
   const handleAdd = () => {
     if (!newPlan.trim()) return;
+
     const trimmed = newPlan.trim();
-
-    // Викликати глобальний метод додавання
-    addPlan(dateKey, trimmed);
-
     const updated = [...planList, trimmed];
-    updatePlans(updated);
+
+    addPlan(dateKey, trimmed); // глобально
+    savePlans(updated); // локально
 
     setNewPlan("");
   };
 
   const handleDelete = (index) => {
     const updated = planList.filter((_, i) => i !== index);
-    updatePlans(updated);
+    savePlans(updated);
   };
 
   const handleEdit = (index) => {
@@ -52,9 +62,10 @@ const PlanModal = ({ isOpen, onRequestClose, selectedDate, addPlan }) => {
   };
 
   const handleSaveEdit = () => {
+    if (!newPlan.trim()) return;
     const updated = [...planList];
     updated[editIndex] = newPlan.trim();
-    updatePlans(updated);
+    savePlans(updated);
     setEditIndex(null);
     setNewPlan("");
   };
