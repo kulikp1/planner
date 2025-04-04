@@ -10,20 +10,31 @@ import {
   isToday,
   getDay,
 } from "date-fns";
+import AddModal from "../AddModal/AddModal";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start: firstDay, end: lastDay });
 
-  // Определяем сдвиг для первого дня месяца (начинаем с Воскресенья)
   const firstDayOffset = getDay(firstDay);
+
+  const openModal = (day) => {
+    setSelectedDate(day);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedDate(null);
+  };
 
   return (
     <div className={styles.container}>
-      {/* Основной календарь */}
       <div className={styles.calendarContainer}>
         <div className={styles.header}>
           <button onClick={() => setCurrentDate(subMonths(currentDate, 1))}>
@@ -35,7 +46,6 @@ const Calendar = () => {
           </button>
         </div>
 
-        {/* Дни недели */}
         <div className={styles.weekDays}>
           {[
             "Sunday",
@@ -52,26 +62,30 @@ const Calendar = () => {
           ))}
         </div>
 
-        {/* Сетка дней */}
         <div className={styles.calendar}>
-          {/* Пустые клетки перед первым днём месяца */}
           {Array(firstDayOffset)
             .fill(null)
             .map((_, index) => (
               <div key={`empty-${index}`} className={styles.emptyDay}></div>
             ))}
 
-          {/* Дни месяца */}
           {days.map((day) => (
             <div
               key={day}
               className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
+              onClick={() => openModal(day)}
             >
               {format(day, "d")}
             </div>
           ))}
         </div>
       </div>
+
+      <AddModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        selectedDate={selectedDate}
+      />
     </div>
   );
 };
