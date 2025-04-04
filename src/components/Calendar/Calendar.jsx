@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Calendar.module.css";
 import {
   startOfMonth,
@@ -16,23 +16,48 @@ const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [plans, setPlans] = useState({});
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start: firstDay, end: lastDay });
-
   const firstDayOffset = getDay(firstDay);
+
+  const dateKey = (date) => format(date, "yyyy-MM-dd");
+
+  // ✅ Завантажити плани при старті
+  useEffect(() => {
+    const stored = localStorage.getItem("plans");
+    if (stored) {
+      setPlans(JSON.parse(stored));
+    }
+  }, []);
+
+  // ✅ Зберігати плани в localStorage при кожній зміні
+  useEffect(() => {
+    localStorage.setItem("plans", JSON.stringify(plans));
+  }, [plans]);
+
+  // ✅ Додати новий план
+  const addPlan = (key, newPlan) => {
+    setPlans((prev) => {
+      const updated = {
+        ...prev,
+        [key]: [...(prev[key] || []), newPlan],
+      };
+      return updated;
+    });
+  };
 
   return (
     <div className={styles.container}>
-      {/* Модалка */}
       <PlanModal
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         selectedDate={selectedDate}
+        addPlan={addPlan}
       />
 
-      {/* Основний календар */}
       <div className={styles.calendarContainer}>
         <div className={styles.header}>
           <button onClick={() => setCurrentDate(subMonths(currentDate, 1))}>
@@ -44,7 +69,6 @@ const Calendar = () => {
           </button>
         </div>
 
-        {/* Назви днів тижня */}
         <div className={styles.weekDays}>
           {[
             "Sunday",
@@ -61,28 +85,48 @@ const Calendar = () => {
           ))}
         </div>
 
-        {/* Сітка днів місяця */}
         <div className={styles.calendar}>
-          {/* Порожні клітинки перед першим днем */}
           {Array(firstDayOffset)
             .fill(null)
             .map((_, index) => (
               <div key={`empty-${index}`} className={styles.emptyDay}></div>
             ))}
 
-          {/* Дні місяця */}
-          {days.map((day) => (
-            <div
-              key={day}
-              className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
-              onClick={() => {
-                setSelectedDate(day);
-                setModalOpen(true);
-              }}
-            >
-              {format(day, "d")}
-            </div>
-          ))}
+          {days.map((day) => {
+            const key = dateKey(day);
+            const dayPlans = plans[key] || [];
+            const displayedPlans = dayPlans.slice(0, 2);
+            const remaining = dayPlans.length - displayedPlans.length;
+
+            return (
+              <div
+                key={day}
+                className={`${styles.day} ${isToday(day) ? styles.today : ""}`}
+                onClick={() => {
+                  setSelectedDate(day);
+                  setModalOpen(true);
+                }}
+              >
+                <div className={styles.dayNumber}>{format(day, "d")}</div>
+                <div className={styles.planList}>
+                  {displayedPlans.map((plan, idx) => (
+                    <div
+                      key={idx}
+                      className={styles.planItem}
+                      style={{
+                        backgroundColor: `hsl(${(idx * 90) % 360}, 70%, 40%)`,
+                      }}
+                    >
+                      {plan}
+                    </div>
+                  ))}
+                  {remaining > 0 && (
+                    <div className={styles.morePlans}>+{remaining} more</div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
