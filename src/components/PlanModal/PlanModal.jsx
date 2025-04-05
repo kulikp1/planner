@@ -11,21 +11,23 @@ const PlanModal = ({
   selectedDate,
   addPlan,
   updatePlans,
+  planList,
 }) => {
-  const [planList, setPlanList] = useState([]);
+  const [internalList, setInternalList] = useState([]);
   const [newPlan, setNewPlan] = useState("");
   const [editIndex, setEditIndex] = useState(null);
 
   const dateKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
 
   useEffect(() => {
-    if (dateKey) {
-      const stored = JSON.parse(localStorage.getItem("plans")) || {};
-      setPlanList(stored[dateKey] || []);
-    }
-  }, [dateKey, isOpen]);
+    setInternalList(planList || []);
+    setNewPlan("");
+    setEditIndex(null);
+  }, [planList, selectedDate]);
 
   const savePlans = (updatedList) => {
+    if (!dateKey) return;
+
     const allPlans = JSON.parse(localStorage.getItem("plans")) || {};
 
     if (updatedList.length > 0) {
@@ -35,35 +37,33 @@ const PlanModal = ({
     }
 
     localStorage.setItem("plans", JSON.stringify(allPlans));
-    setPlanList(updatedList);
     updatePlans(allPlans);
+    setInternalList(updatedList);
   };
 
   const handleAdd = () => {
     if (!newPlan.trim()) return;
-
     const trimmed = newPlan.trim();
-    const updated = [...planList, trimmed];
+    const updated = [...internalList, trimmed];
 
-    addPlan(dateKey, trimmed); // глобально
-    savePlans(updated); // локально
-
+    addPlan(dateKey, trimmed);
+    savePlans(updated);
     setNewPlan("");
   };
 
   const handleDelete = (index) => {
-    const updated = planList.filter((_, i) => i !== index);
+    const updated = internalList.filter((_, i) => i !== index);
     savePlans(updated);
   };
 
   const handleEdit = (index) => {
     setEditIndex(index);
-    setNewPlan(planList[index]);
+    setNewPlan(internalList[index]);
   };
 
   const handleSaveEdit = () => {
     if (!newPlan.trim()) return;
-    const updated = [...planList];
+    const updated = [...internalList];
     updated[editIndex] = newPlan.trim();
     savePlans(updated);
     setEditIndex(null);
@@ -101,10 +101,10 @@ const PlanModal = ({
       </div>
 
       <ul className={styles.planList}>
-        {planList.length === 0 && (
+        {internalList.length === 0 && (
           <li className={styles.empty}>No plans yet.</li>
         )}
-        {planList.map((plan, index) => (
+        {internalList.map((plan, index) => (
           <li key={index} className={styles.planItem}>
             <span>{plan}</span>
             <div className={styles.actions}>

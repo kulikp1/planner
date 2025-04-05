@@ -16,7 +16,15 @@ const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [plans, setPlans] = useState({});
+  const [plans, setPlans] = useState(() => {
+    try {
+      const stored = localStorage.getItem("plans");
+      return stored ? JSON.parse(stored) : {};
+    } catch (e) {
+      console.error("Failed to parse plans from localStorage:", e);
+      return {};
+    }
+  });
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);
@@ -25,33 +33,27 @@ const Calendar = () => {
 
   const dateKey = (date) => format(date, "yyyy-MM-dd");
 
-  // Завантажити плани з localStorage при старті
   useEffect(() => {
     const storedPlans = JSON.parse(localStorage.getItem("plans")) || {};
-    console.log("Завантажені плани з localStorage:", storedPlans);
-
     setPlans(storedPlans);
   }, []);
 
-  // Зберігати плани в localStorage при кожній зміні
   useEffect(() => {
     localStorage.setItem("plans", JSON.stringify(plans));
   }, [plans]);
 
-  // Додати новий план
   const addPlan = (key, newPlan) => {
-    setPlans((prev) => {
-      const updated = {
-        ...prev,
-        [key]: [...(prev[key] || []), newPlan],
-      };
-      return updated;
-    });
+    const current = plans[key] || [];
+    const updated = [...current, newPlan];
+    const newPlans = { ...plans, [key]: updated };
+
+    setPlans(newPlans);
+    localStorage.setItem("plans", JSON.stringify(newPlans));
   };
 
-  // Оновити всі плани (редагування/видалення)
-  const updatePlans = (updated) => {
-    setPlans(updated);
+  const updatePlans = (updatedAllPlans) => {
+    setPlans(updatedAllPlans);
+    localStorage.setItem("plans", JSON.stringify(updatedAllPlans));
   };
 
   return (
@@ -62,6 +64,7 @@ const Calendar = () => {
         selectedDate={selectedDate}
         addPlan={addPlan}
         updatePlans={updatePlans}
+        planList={selectedDate ? plans[dateKey(selectedDate)] || [] : []}
       />
 
       <div className={styles.calendarContainer}>
