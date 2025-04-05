@@ -149,3 +149,6 @@
     opacity: 1;
   }
 }
+.modal:focus {
+  outline: none;
+}
