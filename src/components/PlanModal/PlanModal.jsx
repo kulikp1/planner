@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import styles from "./PlanModal.module.css";
 import { format } from "date-fns";
+import {
+  getPlansFromStorage,
+  savePlansToStorage,
+} from "../../utils/localStorage";
 
 Modal.setAppElement("#root");
 
@@ -26,9 +30,7 @@ const PlanModal = ({
   }, [planList, selectedDate]);
 
   const savePlans = (updatedList) => {
-    if (!dateKey) return;
-
-    const allPlans = JSON.parse(localStorage.getItem("plans")) || {};
+    const allPlans = getPlansFromStorage();
 
     if (updatedList.length > 0) {
       allPlans[dateKey] = updatedList;
@@ -36,9 +38,8 @@ const PlanModal = ({
       delete allPlans[dateKey];
     }
 
-    localStorage.setItem("plans", JSON.stringify(allPlans));
+    savePlansToStorage(allPlans);
     updatePlans(allPlans);
-    setInternalList(updatedList);
   };
 
   const handleAdd = () => {
