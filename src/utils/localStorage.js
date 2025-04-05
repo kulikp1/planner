@@ -1,17 +1,17 @@
 export const getPlansFromStorage = () => {
   try {
     const stored = localStorage.getItem("plans");
-    return stored ? JSON.parse(stored) : {}; // Якщо не знайшли, повертаємо порожній об'єкт
+    return stored ? JSON.parse(stored) : {}; 
   } catch (e) {
     console.warn("Failed to parse plans:", e);
-    return {}; // Якщо сталася помилка при парсингу, теж повертаємо порожній об'єкт
+    return {}; 
   }
 };
 
 export const savePlansToStorage = (plans) => {
   try {
-    localStorage.setItem("plans", JSON.stringify(plans)); // Зберігаємо дані в localStorage
+    localStorage.setItem("plans", JSON.stringify(plans)); 
   } catch (e) {
-    console.error("Failed to save plans:", e); // Якщо сталася помилка, виводимо її в консоль
+    console.error("Failed to save plans:", e); 
   }
 };
