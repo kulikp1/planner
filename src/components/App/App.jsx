@@ -10,9 +10,8 @@ const App = () => {
     <Router>
       <div className={styles.container}>
         <Routes>
-          {/* <Route path="/" element={<Calendar />} /> */}
           <Route path="/" element={<Home />} />
-
+          <Route path="/calendar" element={<Calendar />} />
           <Route path="/events" element={<Events />} />
         </Routes>
       </div>
