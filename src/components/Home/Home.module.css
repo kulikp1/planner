@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
 .container {
-  background-color: black;
+  background-color: #080707;
   color: white;
   display: flex;
   flex-direction: column;
