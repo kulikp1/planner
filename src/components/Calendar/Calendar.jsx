@@ -61,19 +61,17 @@ const Calendar = () => {
 
   return (
     <div className={styles.container}>
-      {/* Навігаційна панель */}
       <div className={styles.navbar}>
-        <div className={styles.navLeft}>
+        {/* <div className={styles.navLeft}>
           <h1 className={styles.logo}>📅 My Calendar</h1>
-        </div>
-        <div className={styles.navRight}>
-          <button
-            className={styles.navButton}
-            onClick={() => navigate("/events")}
-          >
-            Події
-          </button>
-        </div>
+        </div> */}
+        <button
+          className={styles.navButton}
+          onClick={() => navigate("/events")}
+        >
+          EVENTS
+        </button>
+        {/* </div> */}
       </div>
 
       <PlanModal
