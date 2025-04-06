@@ -1,0 +1,31 @@
+.navbar {
+  background-color: black;
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+.buttons button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  text-decoration: underline;
+}
