@@ -14,7 +14,9 @@ export default function Home() {
           <img src={logo} alt="Logo" className={styles.logo} />
         </div>
         <div className={styles.right}>
-          <h1>Онлайн планер — твій зручний тайм-менеджмент помічник</h1>
+          <h1>
+            Онлайн планер <br /> Твій зручний тайм-менеджмент помічник
+          </h1>
           <button onClick={() => navigate("/calendar")}>
             Перейти до календаря
           </button>

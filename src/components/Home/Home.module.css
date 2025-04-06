@@ -1,4 +1,5 @@
-/* Контейнер для всього контенту */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
 .container {
   background-color: black;
   color: white;
@@ -6,9 +7,9 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  font-family: "Montserrat", sans-serif;
 }
 
-/* Основний блок контенту */
 .main {
   display: flex;
   justify-content: center;
@@ -18,7 +19,6 @@
   flex: 1;
 }
 
-/* Ліва частина (для логотипа) */
 .left {
   flex: 1;
   display: flex;
@@ -26,7 +26,6 @@
   width: 100%;
 }
 
-/* Правая частина (з заголовком і кнопкою) */
 .right {
   flex: 1;
   text-align: center;
@@ -34,7 +33,6 @@
   max-width: 800px;
 }
 
-/* Логотип */
 .logo {
   width: 70%;
   height: auto;
@@ -42,24 +40,83 @@
 
 /* Заголовок */
 .right h1 {
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 80px;
   line-height: 1.4;
-  padding: 0 10px;
+  padding: 0 30px;
+  font-weight: 400;
+  background: linear-gradient(90deg, #00ffe7, #ff00d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* text-fill-color: transparent; */
 }
 
-/* Кнопка */
+/* Кнопка з градієнтною рамкою */
 .right button {
-  background-color: white;
-  color: black;
+  position: relative;
+  background-color: black;
+  color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 24px 36px;
+  font-size: 18px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 20px;
   margin-top: 20px;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .right button:hover {
-  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+.right button::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff9900,
+    #33cc33,
+    #00ccff,
+    #6600ff,
+    #ff00cc,
+    #ff0000
+  );
+  background-size: 400%;
+  border-radius: 22px;
+  z-index: -1;
+  animation: gradientBorder 8s linear infinite;
+}
+
+.right button::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  background-color: black;
+  border-radius: 18px;
+  z-index: -1;
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
