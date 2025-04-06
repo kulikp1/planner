@@ -11,6 +11,7 @@ import {
   getDay,
 } from "date-fns";
 import PlanModal from "../PlanModal/PlanModal";
+import { useNavigate } from "react-router-dom";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -25,6 +26,8 @@ const Calendar = () => {
       return {};
     }
   });
+
+  const navigate = useNavigate();
 
   const firstDay = startOfMonth(currentDate);
   const lastDay = endOfMonth(currentDate);
@@ -58,6 +61,21 @@ const Calendar = () => {
 
   return (
     <div className={styles.container}>
+      {/* Навігаційна панель */}
+      <div className={styles.navbar}>
+        <div className={styles.navLeft}>
+          <h1 className={styles.logo}>📅 My Calendar</h1>
+        </div>
+        <div className={styles.navRight}>
+          <button
+            className={styles.navButton}
+            onClick={() => navigate("/events")}
+          >
+            Події
+          </button>
+        </div>
+      </div>
+
       <PlanModal
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
