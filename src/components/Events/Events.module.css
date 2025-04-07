@@ -1,0 +1,44 @@
+.wrapper {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #080707;
+  font-family: "Montserrat", sans-serif;
+}
+
+.title {
+  font-size: 28px;
+  color: white;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.eventsList {
+  display: grid;
+  gap: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.eventCard {
+  border: 1px solid #3f3f3f;
+  border-radius: 16px;
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.eventCard:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.eventTitle {
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.eventDate,
+.eventLocation {
+  color: #a1a1a1;
+  font-size: 14px;
+}
