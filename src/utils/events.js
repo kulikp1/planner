@@ -17,4 +17,10 @@ export const events = [
     date: "28 квітня 2025",
     location: "ART HUB, Чернігів",
   },
+  {
+    id: 4,
+    title: "Ням ням",
+    date: "2025",
+    location: "ART",
+  },
 ]

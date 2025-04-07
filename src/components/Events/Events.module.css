@@ -1,36 +1,61 @@
-.wrapper {
-  min-height: 100vh;
-  /* padding: 40px 20px; */
-  background-color: #080707;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
   font-family: "Montserrat", sans-serif;
+  background-color: #080707;
+}
+
+.container {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  padding: 16px 0;
+  overflow: hidden;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 24px;
   color: white;
   text-align: center;
-  margin-bottom: 32px;
+  padding: 12px 0;
+  background-color: #080707;
+  z-index: 10;
 }
 
 .eventsList {
   display: grid;
-  gap: 24px;
-  max-width: 600px;
+  gap: 12px;
+  max-width: 500px;
   width: 100%;
+  padding: 0 16px;
+  overflow-y: auto;
+  flex: 1;
 }
 
 .eventCard {
   position: relative;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 10px 14px;
+  border-radius: 16px;
   background-color: #080707;
   overflow: hidden;
   z-index: 1;
   transition: transform 0.3s ease;
+  font-size: 14px;
 }
 
 .eventCard:hover {
@@ -38,7 +63,6 @@
   cursor: pointer;
 }
 
-/* Градієнтна рамка */
 .eventCard::before {
   content: "";
   position: absolute;
@@ -46,16 +70,9 @@
   left: -1px;
   right: -1px;
   bottom: -1px;
-  background: linear-gradient(
-    45deg,
-    #ff0000,
-    /* #ff9900,
-    #33cc33, */ /* #00ccff, */ #6600ff,
-    #ff00cc,
-    #ff0000
-  );
+  background: linear-gradient(45deg, #ff0000, #6600ff, #ff00cc, #ff0000);
   background-size: 400%;
-  border-radius: 22px;
+  border-radius: 18px;
   z-index: -1;
   animation: gradientBorder 8s linear infinite;
 }
@@ -68,31 +85,49 @@
   right: 2px;
   bottom: 2px;
   background-color: #080707;
-  border-radius: 18px;
+  border-radius: 14px;
   z-index: -1;
 }
 
-@keyframes gradientBorder {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .eventTitle {
-  font-size: 20px;
+  font-size: 14px;
   color: white;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .eventDate,
 .eventLocation {
   color: #a1a1a1;
-  font-size: 14px;
+  font-size: 12px;
+}
+
+.pagination {
+  padding: 10px 16px;
+  background-color: #080707;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #222;
+  z-index: 10;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background-color: #222;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
