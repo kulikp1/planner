@@ -24,7 +24,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px 0;
+  padding: 12px 0;
   overflow: hidden;
 }
 
@@ -35,27 +35,34 @@ body {
   padding: 12px 0;
   background-color: #080707;
   z-index: 10;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .eventsList {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   max-width: 500px;
   width: 100%;
   padding: 0 16px;
-  overflow-y: auto;
+  overflow: hidden;
   flex: 1;
 }
 
 .eventCard {
   position: relative;
-  padding: 10px 14px;
-  border-radius: 16px;
+  height: 150px;
+  padding: 6px 10px;
+  border-radius: 10px;
   background-color: #080707;
   overflow: hidden;
   z-index: 1;
   transition: transform 0.3s ease;
-  font-size: 14px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .eventCard:hover {
@@ -66,13 +73,13 @@ body {
 .eventCard::before {
   content: "";
   position: absolute;
-  top: -1px;
-  left: -1px;
-  right: -1px;
-  bottom: -1px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: linear-gradient(45deg, #ff0000, #6600ff, #ff00cc, #ff0000);
   background-size: 400%;
-  border-radius: 18px;
+  border-radius: 12px;
   z-index: -1;
   animation: gradientBorder 8s linear infinite;
 }
@@ -85,21 +92,23 @@ body {
   right: 2px;
   bottom: 2px;
   background-color: #080707;
-  border-radius: 14px;
+  border-radius: 8px;
   z-index: -1;
 }
 
 .eventTitle {
-  font-size: 14px;
+  font-size: 13px;
   color: white;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
+  line-height: 1.1;
 }
 
 .eventDate,
 .eventLocation {
   color: #a1a1a1;
-  font-size: 12px;
+  font-size: 10px;
+  line-height: 1;
 }
 
 .pagination {
@@ -111,6 +120,7 @@ body {
   align-items: center;
   border-top: 1px solid #222;
   z-index: 10;
+  margin-top: 40px;
 }
 
 .pagination button {
@@ -130,4 +140,16 @@ body {
 .pagination button:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
