@@ -11,6 +11,7 @@ export default function Navbar() {
         <img src={logo} alt="Logo" className={styles.logo} />
       </div>
       <div className={styles.buttons}>
+        <button onClick={() => navigate("/")}>На головну</button>
         <button onClick={() => navigate("/events")}>Події</button>
         <button onClick={() => navigate("/notes")}>Нотатки</button>
       </div>
