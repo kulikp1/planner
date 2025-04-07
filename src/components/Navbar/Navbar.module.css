@@ -24,8 +24,10 @@
   font-size: 16px;
   margin-left: 20px;
   cursor: pointer;
+  transition: color 0.7s ease;
 }
 
 .buttons button:hover {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  color: rgb(202, 117, 117);
 }
