@@ -4,6 +4,7 @@ import Calendar from "../Calendar/Calendar";
 import Events from "../Events/Events";
 import styles from "./App.module.css";
 import Home from "../../components/Home/Home";
+import Notes from "../Notes/Notes";
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <div className={styles.container}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/notes" element={<Notes />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/events" element={<Events />} />
         </Routes>
