@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { events } from "../../utils/events";
 import styles from "./Events.module.css";
 import Navbar from "../Navbar/Navbar";
+import { parse, format } from "date-fns";
+import { uk } from "date-fns/locale";
 
 const EVENTS_PER_PAGE = 3;
 
@@ -9,7 +11,6 @@ const UpcomingEvents = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(events.length / EVENTS_PER_PAGE);
-
   const startIndex = (currentPage - 1) * EVENTS_PER_PAGE;
   const visibleEvents = events.slice(startIndex, startIndex + EVENTS_PER_PAGE);
 
@@ -19,6 +20,33 @@ const UpcomingEvents = () => {
 
   const handleNext = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handleAddToCalendar = (event) => {
+    try {
+      // Парсимо українську дату
+      const parsedDate = parse(event.date, "d MMMM yyyy", new Date(), {
+        locale: uk,
+      });
+      const key = format(parsedDate, "yyyy-MM-dd");
+
+      const stored = JSON.parse(localStorage.getItem("plans")) || {};
+      const dayPlans = stored[key] || [];
+
+      if (!dayPlans.includes(event.title)) {
+        const updatedPlans = {
+          ...stored,
+          [key]: [...dayPlans, event.title],
+        };
+
+        localStorage.setItem("plans", JSON.stringify(updatedPlans));
+        alert(`Подію "${event.title}" додано в календар!`);
+      } else {
+        alert("Ця подія вже є в календарі.");
+      }
+    } catch (err) {
+      console.error("Помилка при додаванні події:", err);
+    }
   };
 
   return (
@@ -33,6 +61,9 @@ const UpcomingEvents = () => {
               <h2 className={styles.eventTitle}>{event.title}</h2>
               <p className={styles.eventDate}>{event.date}</p>
               <p className={styles.eventLocation}>{event.location}</p>
+              <button onClick={() => handleAddToCalendar(event)}>
+                Додати в календар
+              </button>
             </div>
           ))}
         </div>

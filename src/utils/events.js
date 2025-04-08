@@ -20,7 +20,7 @@ export const events = [
   {
     id: 4,
     title: "Ням ням",
-    date: "2025",
+    date: "30 квітня 2025",
     location: "ART",
   },
-]
+];
