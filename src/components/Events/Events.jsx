@@ -50,7 +50,7 @@ const UpcomingEvents = () => {
         // Переходимо на сторінку календаря через 1.5 сек
         setTimeout(() => {
           navigate("/calendar");
-        }, 1500);
+        }, 2000);
       } else {
         toast.info("Ця подія вже є у календарі.");
         setAddedEvents((prev) => ({ ...prev, [event.id]: true }));
@@ -63,7 +63,16 @@ const UpcomingEvents = () => {
 
   return (
     <div className={styles.container}>
-      <ToastContainer position="bottom-center" autoClose={1500} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover={false}
+        draggable={false}
+        toastClassName={styles.customToast}
+      />
+
       <Navbar />
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Події у Чернігові</h1>
