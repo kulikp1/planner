@@ -76,10 +76,13 @@ const UpcomingEvents = () => {
               <p className={styles.eventLocation}>{event.location}</p>
               <button
                 onClick={() => handleAddToCalendar(event)}
-                className={styles.addButton}
+                className={styles.iconButton}
                 disabled={!!addedEvents[event.id]}
+                title={
+                  addedEvents[event.id] ? "Вже додано" : "Додати до календаря"
+                }
               >
-                {addedEvents[event.id] ? "✅ Додано" : "➕ Додати в календар"}
+                {addedEvents[event.id] ? "✔" : "+"}
               </button>
             </div>
           ))}
