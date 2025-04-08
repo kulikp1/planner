@@ -154,3 +154,25 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.addButton {
+  margin-top: auto;
+  padding: 8px 14px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.addButton:hover:not(:disabled) {
+  background-color: #444;
+}
+
+.addButton:disabled {
+  background-color: #444;
+  color: #aaa;
+  cursor: default;
+}
