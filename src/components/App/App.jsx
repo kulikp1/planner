@@ -8,16 +8,18 @@ import Notes from "../Notes/Notes";
 
 const App = () => {
   return (
-    <Router>
-      <div className={styles.container}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/events" element={<Events />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className={styles.container}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/calendar" element={<Calendar />} />
+            <Route path="/events" element={<Events />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 };
 
