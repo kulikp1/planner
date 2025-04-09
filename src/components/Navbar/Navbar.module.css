@@ -3,13 +3,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: #1f1f2b; /* дефолт — темна тема */
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }
 
-.dark {
-  background-color: #2b2b3c;
+.light .navbar {
+  background-color: #ffffff;
+  color: #000;
 }
 
 .logoContainer {
@@ -30,17 +32,13 @@
   cursor: pointer;
   font-size: 0.95rem;
   transition: background 0.2s ease;
+  color: inherit;
 }
 
 .buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.light .buttons button:hover {
   background-color: #f0f0f0;
-}
-
-.dark .buttons button {
-  color: #eee;
-  border-color: #555;
-}
-
-.dark .buttons button:hover {
-  background-color: #444;
 }
