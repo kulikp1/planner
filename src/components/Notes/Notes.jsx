@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Notes.module.css";
-import clsx from "clsx"; // npm install clsx
+import clsx from "clsx";
+import NavBar from "../Navbar/Navbar";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
@@ -41,15 +42,11 @@ const Notes = () => {
 
   return (
     <div className={clsx(styles.page, isDarkMode && styles.dark)}>
+      <NavBar />
+
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>📓 Мій Щоденник</h2>
-          <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className={styles.themeToggle}
-          >
-            {isDarkMode ? "☀️ Світла тема" : "🌙 Темна тема"}
-          </button>
         </div>
 
         <textarea
