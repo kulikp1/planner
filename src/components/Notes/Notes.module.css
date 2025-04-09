@@ -58,6 +58,7 @@
   cursor: pointer;
   font-size: 0.95rem;
   transition: background 0.3s;
+  color: black;
 }
 
 .themeToggle:hover {
