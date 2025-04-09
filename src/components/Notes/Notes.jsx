@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
 import styles from "./Notes.module.css";
+import clsx from "clsx"; // npm install clsx
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("diaryNotes");
+    const storedTheme = localStorage.getItem("darkMode") === "true";
     if (storedNotes) {
       setNotes(JSON.parse(storedNotes));
     }
+    setIsDarkMode(storedTheme);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("diaryNotes", JSON.stringify(notes));
   }, [notes]);
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", isDarkMode);
+  }, [isDarkMode]);
 
   const handleAddNote = () => {
     if (newNote.trim() === "") return;
@@ -32,9 +40,17 @@ const Notes = () => {
   };
 
   return (
-    <div className={styles.page}>
+    <div className={clsx(styles.page, isDarkMode && styles.dark)}>
       <div className={styles.container}>
-        <h2 className={styles.title}>📓 Мій Щоденник</h2>
+        <div className={styles.header}>
+          <h2 className={styles.title}>📓 Мій Щоденник</h2>
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className={styles.themeToggle}
+          >
+            {isDarkMode ? "☀️ Світла тема" : "🌙 Темна тема"}
+          </button>
+        </div>
 
         <textarea
           placeholder="Поділись своїми думками..."

@@ -7,6 +7,11 @@
   align-items: center;
   padding: 30px;
   box-sizing: border-box;
+  transition: background 0.4s ease;
+}
+
+.dark {
+  background: linear-gradient(to bottom right, #1f1f2b, #2c2c3d);
 }
 
 .container {
@@ -19,13 +24,49 @@
   font-family: "Segoe UI", sans-serif;
   overflow-y: auto;
   max-height: 90vh;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.dark .container {
+  background: #2b2b3c;
+  color: #f1f1f1;
 }
 
 .title {
   text-align: center;
   color: #6b4fbb;
   font-size: 2.2rem;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.dark .title {
+  color: #a18ef8;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.themeToggle {
+  background: transparent;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.3s;
+}
+
+.themeToggle:hover {
+  background-color: #efefef;
+}
+
+.dark .themeToggle {
+  border-color: #555;
+  color: #ddd;
 }
 
 .textarea {
@@ -35,10 +76,16 @@
   font-size: 1rem;
   resize: none;
   border: 1px solid #ddd;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
-  margin-bottom: 15px;
   background-color: #fffdfc;
   min-height: 100px;
+  margin-bottom: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dark .textarea {
+  background-color: #3a3a4f;
+  border-color: #555;
+  color: #f1f1f1;
 }
 
 .button {
@@ -69,11 +116,15 @@
   padding: 15px 20px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background 0.3s;
 }
 
 .noteCard:hover {
   transform: scale(1.01);
+}
+
+.dark .noteCard {
+  background: #3a3a4f;
 }
 
 .noteHeader {
@@ -86,6 +137,10 @@
 .noteDate {
   font-size: 0.85rem;
   color: #999;
+}
+
+.dark .noteDate {
+  color: #ccc;
 }
 
 .deleteBtn {
@@ -107,8 +162,16 @@
   white-space: pre-wrap;
 }
 
+.dark .noteText {
+  color: #eee;
+}
+
 .empty {
   text-align: center;
   color: #aaa;
   font-style: italic;
+}
+
+.dark .empty {
+  color: #888;
 }
