@@ -1,17 +1,11 @@
 .navbar {
+  background-color: black;
+  color: white;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #1f1f2b; /* дефолт — темна тема */
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
-}
-
-.light .navbar {
-  background-color: #ffffff;
-  color: #000;
+  border-bottom: 1px solid #333;
 }
 
 .logoContainer {
@@ -24,21 +18,30 @@
 }
 
 .buttons button {
-  margin-left: 12px;
-  padding: 8px 16px;
-  background-color: transparent;
-  border: 1px solid #888;
-  border-radius: 8px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-left: 20px;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: background 0.2s ease;
-  color: inherit;
+  transition: color 0.7s ease;
 }
 
 .buttons button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(202, 117, 117);
+}
+
+/* 🌞 Світла тема */
+.light .navbar {
+  background-color: #ffffff;
+  color: #111;
+  border-bottom: 1px solid #ddd;
+}
+
+.light .buttons button {
+  color: #111;
 }
 
 .light .buttons button:hover {
-  background-color: #f0f0f0;
+  color: #b82f2f;
 }
