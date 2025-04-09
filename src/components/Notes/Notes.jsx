@@ -6,24 +6,17 @@ import NavBar from "../Navbar/Navbar";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
-  // const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("diaryNotes");
-    // const storedTheme = localStorage.getItem("darkMode") === "true";
     if (storedNotes) {
       setNotes(JSON.parse(storedNotes));
     }
-    // setIsDarkMode(storedTheme);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("diaryNotes", JSON.stringify(notes));
   }, [notes]);
-
-  // useEffect(() => {
-  //   localStorage.setItem("darkMode", isDarkMode);
-  // }, [isDarkMode]);
 
   const handleAddNote = () => {
     if (newNote.trim() === "") return;
