@@ -3,28 +3,35 @@ import styles from "./Notes.module.css";
 import clsx from "clsx";
 import NavBar from "../Navbar/Navbar";
 
+const LOCAL_STORAGE_KEY = "diaryNotes";
+
 const Notes = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error("Помилка при читанні з localStorage", e);
+      return [];
+    }
+  });
+
   const [newNote, setNewNote] = useState("");
 
   useEffect(() => {
-    const storedNotes = localStorage.getItem("diaryNotes");
-    if (storedNotes) {
-      setNotes(JSON.parse(storedNotes));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("diaryNotes", JSON.stringify(notes));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
   }, [notes]);
 
   const handleAddNote = () => {
-    if (newNote.trim() === "") return;
+    const text = newNote.trim();
+    if (!text) return;
+
     const newEntry = {
       id: Date.now(),
-      text: newNote,
+      text,
       date: new Date().toLocaleString(),
     };
+
     setNotes([newEntry, ...notes]);
     setNewNote("");
   };
@@ -36,11 +43,8 @@ const Notes = () => {
   return (
     <div className={clsx(styles.page)}>
       <NavBar />
-
       <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>📓 Мій Щоденник</h2>
-        </div>
+        <h2 className={styles.title}>📓 Мій Щоденник</h2>
 
         <textarea
           placeholder="Поділись своїми думками..."
@@ -56,18 +60,18 @@ const Notes = () => {
           {notes.length === 0 ? (
             <p className={styles.empty}>Поки що нотаток немає.</p>
           ) : (
-            notes.map((note) => (
-              <div key={note.id} className={styles.noteCard}>
+            notes.map(({ id, text, date }) => (
+              <div key={id} className={styles.noteCard}>
                 <div className={styles.noteHeader}>
-                  <span className={styles.noteDate}>{note.date}</span>
+                  <span className={styles.noteDate}>{date}</span>
                   <button
-                    onClick={() => handleDeleteNote(note.id)}
+                    onClick={() => handleDeleteNote(id)}
                     className={styles.deleteBtn}
                   >
                     🗑️
                   </button>
                 </div>
-                <p className={styles.noteText}>{note.text}</p>
+                <p className={styles.noteText}>{text}</p>
               </div>
             ))
           )}
