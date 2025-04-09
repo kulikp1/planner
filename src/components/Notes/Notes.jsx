@@ -6,24 +6,24 @@ import NavBar from "../Navbar/Navbar";
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState("");
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  // const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const storedNotes = localStorage.getItem("diaryNotes");
-    const storedTheme = localStorage.getItem("darkMode") === "true";
+    // const storedTheme = localStorage.getItem("darkMode") === "true";
     if (storedNotes) {
       setNotes(JSON.parse(storedNotes));
     }
-    setIsDarkMode(storedTheme);
+    // setIsDarkMode(storedTheme);
   }, []);
 
   useEffect(() => {
     localStorage.setItem("diaryNotes", JSON.stringify(notes));
   }, [notes]);
 
-  useEffect(() => {
-    localStorage.setItem("darkMode", isDarkMode);
-  }, [isDarkMode]);
+  // useEffect(() => {
+  //   localStorage.setItem("darkMode", isDarkMode);
+  // }, [isDarkMode]);
 
   const handleAddNote = () => {
     if (newNote.trim() === "") return;
@@ -41,7 +41,7 @@ const Notes = () => {
   };
 
   return (
-    <div className={clsx(styles.page, isDarkMode && styles.dark)}>
+    <div className={clsx(styles.page)}>
       <NavBar />
 
       <div className={styles.container}>

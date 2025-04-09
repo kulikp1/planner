@@ -8,10 +8,6 @@
   align-items: center;
 }
 
-.dark {
-  background: linear-gradient(to bottom right, #1f1f2b, #2c2c3d);
-}
-
 .light {
   background: linear-gradient(to bottom right, #e7e7f4, #ffffff);
 }
