@@ -5,6 +5,7 @@ import Events from "../Events/Events";
 import styles from "./App.module.css";
 import Home from "../../components/Home/Home";
 import Notes from "../Notes/Notes";
+import ThemeProvider from "../../context/ThemeContext";
 
 const App = () => {
   return (
