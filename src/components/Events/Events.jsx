@@ -76,7 +76,9 @@ const UpcomingEvents = () => {
 
       <Navbar />
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Події у Чернігові</h1>
+        <h1 className={` ${isDarkMode ? styles.title : styles.light}`}>
+          Події у Чернігові
+        </h1>
 
         <div className={styles.eventsList}>
           {visibleEvents.map((event) => (

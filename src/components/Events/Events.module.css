@@ -39,6 +39,17 @@ body {
   margin-bottom: 20px;
 }
 
+.light {
+  font-size: 24px;
+  color: black;
+  text-align: center;
+  padding: 12px 0;
+  background-color: transparent;
+  z-index: 10;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
 .eventsList {
   display: grid;
   gap: 10px;
