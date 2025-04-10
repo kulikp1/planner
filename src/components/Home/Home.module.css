@@ -85,7 +85,6 @@
     45deg,
     #ff0000,
     #ff9900,
-    #33cc33,
     #00ccff,
     #6600ff,
     #ff00cc,
@@ -131,6 +130,7 @@
 .light button {
   color: black;
   border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .light button::before {
