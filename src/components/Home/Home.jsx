@@ -13,7 +13,11 @@ export default function Home() {
       <Navbar />
       <main className={styles.main}>
         <div className={styles.left}>
-          <img src={logo} alt="Logo" className={styles.logo} />
+          <img
+            src={logo}
+            alt="Logo"
+            className={`${styles.logo} ${!isDarkMode ? styles.lightLogo : {}}`}
+          />
         </div>
         <div className={`${styles.right} ${!isDarkMode ? styles.light : {}}`}>
           <h1>
