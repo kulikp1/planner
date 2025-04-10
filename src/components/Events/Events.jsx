@@ -111,7 +111,11 @@ const UpcomingEvents = () => {
           ))}
         </div>
 
-        <div className={styles.pagination}>
+        <div
+          className={` ${
+            isDarkMode ? styles.pagination : styles.Lightpagination
+          }`}
+        >
           <button onClick={handlePrev} disabled={currentPage === 1}>
             Назад
           </button>
