@@ -124,7 +124,7 @@
 /* Light */
 .light h1 {
   font-weight: 600;
-  background: linear-gradient(90deg, #525252, #7e7e7e);
+  background: linear-gradient(90deg, #272727, #7e7e7e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
