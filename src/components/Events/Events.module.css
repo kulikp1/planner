@@ -114,6 +114,13 @@ body {
   line-height: 1;
 }
 
+.eventDate,
+.eventLocation {
+  font-size: 14px;
+
+  color: #424141;
+}
+
 .pagination {
   padding: 10px 16px;
   background-color: #080707;

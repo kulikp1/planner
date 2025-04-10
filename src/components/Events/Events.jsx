@@ -96,7 +96,13 @@ const UpcomingEvents = () => {
               >
                 {event.title}
               </h2>
-              <p className={styles.eventDate}>{event.date}</p>
+              <p
+                className={`${styles.eventDate} ${
+                  !isDarkMode ? styles.lightDescr : []
+                }`}
+              >
+                {event.date}
+              </p>
               <p className={styles.eventLocation}>{event.location}</p>
               <button
                 onClick={() => handleAddToCalendar(event)}
