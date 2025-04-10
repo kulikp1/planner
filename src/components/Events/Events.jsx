@@ -90,7 +90,7 @@ const UpcomingEvents = () => {
             >
               <h2
                 className={` ${
-                  isDarkMode ? styles.title : styles.eventLightTitle
+                  isDarkMode ? styles.eventTitle : styles.eventLightTitle
                 }`}
               >
                 {event.title}
@@ -99,7 +99,9 @@ const UpcomingEvents = () => {
               <p className={styles.eventLocation}>{event.location}</p>
               <button
                 onClick={() => handleAddToCalendar(event)}
-                className={styles.iconButton}
+                className={` ${
+                  isDarkMode ? styles.iconButton : styles.LightIconButton
+                }`}
                 disabled={!!addedEvents[event.id]}
                 title={
                   addedEvents[event.id] ? "Вже додано" : "Додати до календаря"
