@@ -7,6 +7,7 @@ import { parse, format } from "date-fns";
 import { uk } from "date-fns/locale";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
 
 const EVENTS_PER_PAGE = 3;
 
@@ -14,6 +15,7 @@ const UpcomingEvents = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [addedEvents, setAddedEvents] = useState({});
   const navigate = useNavigate();
+  const { isDarkMode } = useTheme(); // використовуємо тему
 
   const totalPages = Math.ceil(events.length / EVENTS_PER_PAGE);
   const startIndex = (currentPage - 1) * EVENTS_PER_PAGE;
@@ -47,7 +49,6 @@ const UpcomingEvents = () => {
         toast.success(`"${event.title}" додано до календаря!`);
         setAddedEvents((prev) => ({ ...prev, [event.id]: true }));
 
-        // Переходимо на сторінку календаря через 1.5 сек
         setTimeout(() => {
           navigate("/calendar");
         }, 2000);
@@ -79,7 +80,12 @@ const UpcomingEvents = () => {
 
         <div className={styles.eventsList}>
           {visibleEvents.map((event) => (
-            <div key={event.id} className={styles.eventCard}>
+            <div
+              key={event.id}
+              className={` ${
+                isDarkMode ? styles.eventCard : styles.eventCardLight
+              }`}
+            >
               <h2 className={styles.eventTitle}>{event.title}</h2>
               <p className={styles.eventDate}>{event.date}</p>
               <p className={styles.eventLocation}>{event.location}</p>
