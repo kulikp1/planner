@@ -8,6 +8,7 @@ import { uk } from "date-fns/locale";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
+import { IoAddOutline } from "react-icons/io5";
 
 const EVENTS_PER_PAGE = 3;
 
@@ -107,7 +108,7 @@ const UpcomingEvents = () => {
                   addedEvents[event.id] ? "Вже додано" : "Додати до календаря"
                 }
               >
-                {addedEvents[event.id] ? "✔" : "+"}
+                {addedEvents[event.id] ? "✔" : <IoAddOutline />}
               </button>
             </div>
           ))}
