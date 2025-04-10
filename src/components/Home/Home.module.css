@@ -52,17 +52,6 @@
   background-clip: text;
 }
 
-.light h1 {
-  font-weight: 600;
-  background: black;
-  background-clip: text;
-}
-
-.light button {
-  color: black;
-  border-radius: 24px;
-}
-
 /* Кнопка з градієнтною рамкою */
 .rightButton {
   position: relative;
@@ -120,15 +109,6 @@
   z-index: -1;
 }
 
-.light button::before {
-  border-radius: 22px;
-}
-
-.light button::after {
-  background-color: rgba(255, 255, 255, 0.87);
-  border-radius: 22px;
-}
-
 @keyframes gradientBorder {
   0% {
     background-position: 0% 50%;
@@ -139,4 +119,25 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Light */
+.light h1 {
+  font-weight: 600;
+  background: black;
+  background-clip: text;
+}
+
+.light button {
+  color: black;
+  border-radius: 24px;
+}
+
+.light button::before {
+  border-radius: 22px;
+}
+
+.light button::after {
+  background-color: rgba(255, 255, 255, 0.87);
+  border-radius: 22px;
 }
