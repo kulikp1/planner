@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
 
 .container {
-  background-color: #080707;
   color: white;
   display: flex;
   flex-direction: column;
@@ -36,6 +35,8 @@
 .logo {
   width: 70%;
   height: auto;
+  border-radius: 250px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.55);
 }
 
 /* Заголовок */
@@ -49,11 +50,21 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  /* text-fill-color: transparent; */
+}
+
+.light h1 {
+  font-weight: 600;
+  background: black;
+  background-clip: text;
+}
+
+.light button {
+  color: black;
+  border-radius: 24px;
 }
 
 /* Кнопка з градієнтною рамкою */
-.right button {
+.rightButton {
   position: relative;
   background-color: black;
   color: white;
@@ -70,11 +81,11 @@
   letter-spacing: 0.5px;
 }
 
-.right button:hover {
+.rightButton:hover {
   transform: scale(1.05);
 }
 
-.right button::before {
+.rightButton::before {
   content: "";
   position: absolute;
   top: -3px;
@@ -97,7 +108,7 @@
   animation: gradientBorder 8s linear infinite;
 }
 
-.right button::after {
+.rightButton::after {
   content: "";
   position: absolute;
   top: 3px;
@@ -107,6 +118,15 @@
   background-color: black;
   border-radius: 18px;
   z-index: -1;
+}
+
+.light button::before {
+  border-radius: 22px;
+}
+
+.light button::after {
+  background-color: rgba(255, 255, 255, 0.87);
+  border-radius: 22px;
 }
 
 @keyframes gradientBorder {
