@@ -41,43 +41,45 @@ const Notes = () => {
   };
 
   return (
-    <div className={clsx(styles.page)}>
+    <div>
       <NavBar />
-      <div className={styles.container}>
-        <h2 className={styles.title}>📓 Мій Щоденник</h2>
+      <div className={clsx(styles.page)}>
+        <div className={styles.container}>
+          <h2 className={styles.title}>📓 Мій Щоденник</h2>
 
-        <div className={styles.form}>
-          <textarea
-            placeholder="Поділись своїми думками..."
-            value={newNote}
-            onChange={(e) => setNewNote(e.target.value)}
-            className={styles.textarea}
-          />
-          <button onClick={handleAddNote} className={styles.button}>
-            ➕ Додати нотатку
-          </button>
-        </div>
-
-        {notes.length === 0 ? (
-          <p className={styles.empty}>Поки що нотаток немає.</p>
-        ) : (
-          <div className={styles.notesList}>
-            {notes.map(({ id, text, date }) => (
-              <div key={id} className={styles.noteCard}>
-                <div className={styles.noteHeader}>
-                  <span className={styles.noteDate}>{date}</span>
-                  <button
-                    onClick={() => handleDeleteNote(id)}
-                    className={styles.deleteBtn}
-                  >
-                    🗑️
-                  </button>
-                </div>
-                <p className={styles.noteText}>{text}</p>
-              </div>
-            ))}
+          <div className={styles.form}>
+            <textarea
+              placeholder="Поділись своїми думками..."
+              value={newNote}
+              onChange={(e) => setNewNote(e.target.value)}
+              className={styles.textarea}
+            />
+            <button onClick={handleAddNote} className={styles.button}>
+              ➕ Додати нотатку
+            </button>
           </div>
-        )}
+
+          {notes.length === 0 ? (
+            <p className={styles.empty}>Поки що нотаток немає.</p>
+          ) : (
+            <div className={styles.notesList}>
+              {notes.map(({ id, text, date }) => (
+                <div key={id} className={styles.noteCard}>
+                  <div className={styles.noteHeader}>
+                    <span className={styles.noteDate}>{date}</span>
+                    <button
+                      onClick={() => handleDeleteNote(id)}
+                      className={styles.deleteBtn}
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                  <p className={styles.noteText}>{text}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
