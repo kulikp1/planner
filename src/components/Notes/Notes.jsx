@@ -17,6 +17,8 @@ const Notes = () => {
   });
 
   const [newNote, setNewNote] = useState("");
+  const [editId, setEditId] = useState(null);
+  const [editedText, setEditedText] = useState("");
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(notes));
@@ -38,6 +40,26 @@ const Notes = () => {
 
   const handleDeleteNote = (id) => {
     setNotes(notes.filter((note) => note.id !== id));
+  };
+
+  const handleSaveEdit = () => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === editId ? { ...note, text: editedText } : note
+      )
+    );
+    setEditId(null);
+    setEditedText("");
+  };
+
+  const handleCancelEdit = () => {
+    setEditId(null);
+    setEditedText("");
+  };
+
+  const openEditModal = (id, currentText) => {
+    setEditId(id);
+    setEditedText(currentText);
   };
 
   return (
@@ -74,13 +96,44 @@ const Notes = () => {
                       🗑️
                     </button>
                   </div>
-                  <p className={styles.noteText}>{text}</p>
+                  <p
+                    className={styles.noteText}
+                    onClick={() => openEditModal(id, text)}
+                    title="Натисніть для редагування"
+                  >
+                    {text}
+                  </p>
                 </div>
               ))}
             </div>
           )}
         </div>
       </div>
+
+      {editId !== null && (
+        <div className={styles.modalOverlay} onClick={handleCancelEdit}>
+          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+            <h3>Редагувати нотатку</h3>
+            <textarea
+              value={editedText}
+              onChange={(e) => setEditedText(e.target.value)}
+              className={styles.textarea}
+              rows={5}
+            />
+            <div className={styles.modalButtons}>
+              <button onClick={handleSaveEdit} className={styles.button}>
+                💾 Зберегти
+              </button>
+              <button
+                onClick={handleCancelEdit}
+                className={styles.cancelButton}
+              >
+                ❌ Скасувати
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
