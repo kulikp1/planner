@@ -111,7 +111,11 @@ const Notes = () => {
                       onClick={() => handleDeleteNote(id)}
                       className={styles.deleteBtn}
                     >
-                      <IoMdTrash className={styles.deleteIcon} />
+                      <IoMdTrash
+                        className={`${styles.deleteIcon}  ${
+                          !isDarkMode ? styles.lightDelete : {}
+                        }`}
+                      />
                     </button>
                   </div>
                   <p

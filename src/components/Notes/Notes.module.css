@@ -153,7 +153,7 @@
 }
 
 .deleteIcon {
-  fill: #111827;
+  fill: #fff;
   width: 20px;
   height: 20px;
 }
@@ -253,4 +253,8 @@
   color: #111827;
   background-color: #f3f4f6;
   transform: scale(1.05); /* легке збільшення */
+}
+
+.lightDelete {
+  fill: #111827;
 }
