@@ -136,7 +136,12 @@ const Notes = () => {
 
       {editId !== null && (
         <div className={styles.modalOverlay} onClick={handleCancelEdit}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={`${styles.modal}  ${
+              !isDarkMode ? styles.lightTextarea : {}
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <h3>Редагувати нотатку</h3>
             <textarea
               value={editedText}
