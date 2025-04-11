@@ -145,10 +145,20 @@ const Notes = () => {
               rows={5}
             />
             <div className={styles.modalButtons}>
-              <button onClick={handleSaveEdit} className={styles.button}>
+              <button
+                onClick={handleSaveEdit}
+                className={`${styles.button}  ${
+                  !isDarkMode ? styles.lightBtn : {}
+                }`}
+              >
                 💾 Зберегти
               </button>
-              <button onClick={handleCancelEdit} className={styles.button}>
+              <button
+                onClick={handleCancelEdit}
+                className={`${styles.button}  ${
+                  !isDarkMode ? styles.lightBtn : {}
+                }`}
+              >
                 ❌ Скасувати
               </button>
             </div>
