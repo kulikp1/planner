@@ -124,10 +124,7 @@ const Notes = () => {
               <button onClick={handleSaveEdit} className={styles.button}>
                 💾 Зберегти
               </button>
-              <button
-                onClick={handleCancelEdit}
-                className={styles.cancelButton}
-              >
+              <button onClick={handleCancelEdit} className={styles.button}>
                 ❌ Скасувати
               </button>
             </div>
