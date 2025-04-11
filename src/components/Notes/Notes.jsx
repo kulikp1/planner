@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./Notes.module.css";
 import clsx from "clsx";
 import NavBar from "../Navbar/Navbar";
+import { IoMdTrash } from "react-icons/io";
 
 const LOCAL_STORAGE_KEY = "diaryNotes";
 
@@ -96,7 +97,7 @@ const Notes = () => {
                       onClick={() => handleDeleteNote(id)}
                       className={styles.deleteBtn}
                     >
-                      🗑️
+                      <IoMdTrash className={styles.deleteIcon} />
                     </button>
                   </div>
                   <p

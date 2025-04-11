@@ -153,6 +153,12 @@
   padding: 0;
 }
 
+.deleteIcon {
+  fill: #111827;
+  width: 20px;
+  height: 20px;
+}
+
 .deleteBtn:hover {
   color: #dc2626;
 }
