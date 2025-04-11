@@ -46,21 +46,23 @@ const Notes = () => {
       <div className={styles.container}>
         <h2 className={styles.title}>📓 Мій Щоденник</h2>
 
-        <textarea
-          placeholder="Поділись своїми думками..."
-          value={newNote}
-          onChange={(e) => setNewNote(e.target.value)}
-          className={styles.textarea}
-        />
-        <button onClick={handleAddNote} className={styles.button}>
-          ➕ Додати нотатку
-        </button>
+        <div className={styles.form}>
+          <textarea
+            placeholder="Поділись своїми думками..."
+            value={newNote}
+            onChange={(e) => setNewNote(e.target.value)}
+            className={styles.textarea}
+          />
+          <button onClick={handleAddNote} className={styles.button}>
+            ➕ Додати нотатку
+          </button>
+        </div>
 
-        <div className={styles.notesList}>
-          {notes.length === 0 ? (
-            <p className={styles.empty}>Поки що нотаток немає.</p>
-          ) : (
-            notes.map(({ id, text, date }) => (
+        {notes.length === 0 ? (
+          <p className={styles.empty}>Поки що нотаток немає.</p>
+        ) : (
+          <div className={styles.notesList}>
+            {notes.map(({ id, text, date }) => (
               <div key={id} className={styles.noteCard}>
                 <div className={styles.noteHeader}>
                   <span className={styles.noteDate}>{date}</span>
@@ -73,9 +75,9 @@ const Notes = () => {
                 </div>
                 <p className={styles.noteText}>{text}</p>
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
