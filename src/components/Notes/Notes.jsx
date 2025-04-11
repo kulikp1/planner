@@ -76,7 +76,10 @@ const Notes = () => {
               onChange={(e) => setNewNote(e.target.value)}
               className={styles.textarea}
             />
-            <button onClick={handleAddNote} className={styles.button}>
+            <button
+              onClick={handleAddNote}
+              className={`${styles.button} ${styles.mainBtn}`}
+            >
               ➕ Додати нотатку
             </button>
           </div>

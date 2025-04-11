@@ -41,7 +41,6 @@
 }
 
 .button {
-  margin-left: auto;
   width: 200px;
   position: relative;
   padding: 0.6rem 1rem;
@@ -55,6 +54,9 @@
   box-sizing: border-box;
 
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.mainBtn {
+  margin-left: auto;
 }
 
 .button::before {
@@ -210,8 +212,9 @@
 
 .modalButtons {
   display: flex;
-  justify-content: flex-end;
-  gap: 0.75rem;
+  gap: 5px;
+  justify-content: center;
+
   margin-top: 1rem;
 }
 
