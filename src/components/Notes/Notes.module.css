@@ -1,6 +1,5 @@
 .page {
   padding: 2rem;
-  background-color: #f0f4f8;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -8,7 +7,6 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -17,7 +15,7 @@
 .title {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #111827;
+  color: white;
   text-align: center;
 }
 
@@ -35,9 +33,7 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-family: inherit;
-  background-color: #f9fafb;
   min-height: 100px;
-  color: #111827;
 }
 
 .button {
@@ -45,8 +41,10 @@
   position: relative;
   padding: 0.6rem 1rem;
   font-size: 1rem;
-  color: #111827;
-  background-color: #ffffff;
+
+  color: #e5e7eb;
+
+  background-color: #000000;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -94,7 +92,7 @@
 }
 
 .button:hover {
-  background-color: #f0f4ff;
+  background-color: #12151b;
   transform: scale(1.05); /* легке збільшення */
 }
 
@@ -115,7 +113,7 @@
 }
 
 .noteCard {
-  background-color: #fefefe;
+  background-color: #000000;
   border: 1px solid #e5e7eb;
   padding: 1rem;
   border-radius: 10px;
@@ -126,10 +124,11 @@
   flex-direction: column;
   justify-content: space-between;
   height: 160px;
+  transition: transform 0.3s ease;
 }
 
 .noteCard:hover {
-  background-color: #f3f4f6;
+  transform: scale(1.05);
 }
 
 .noteHeader {
@@ -170,7 +169,7 @@
   text-overflow: ellipsis;
   flex-grow: 1;
 
-  color: #111827;
+  color: #f3f4f6;
 }
 
 /* Модалка */
@@ -236,4 +235,22 @@
 
 .cancelButton:hover {
   background-color: #ef4444;
+}
+
+/* Light */
+.light {
+  color: #111827;
+}
+.lightTextarea {
+  background-color: #f9fafb;
+  color: #111827;
+}
+.lightBtn {
+  color: #111827;
+  background-color: #ffffff;
+}
+.lightBtn:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+  transform: scale(1.05); /* легке збільшення */
 }

@@ -3,10 +3,12 @@ import styles from "./Notes.module.css";
 import clsx from "clsx";
 import NavBar from "../Navbar/Navbar";
 import { IoMdTrash } from "react-icons/io";
+import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
 
 const LOCAL_STORAGE_KEY = "diaryNotes";
 
 const Notes = () => {
+  const { isDarkMode } = useTheme(); // використовуємо тему
   const [notes, setNotes] = useState(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -68,18 +70,25 @@ const Notes = () => {
       <NavBar />
       <div className={clsx(styles.page)}>
         <div className={styles.container}>
-          <h2 className={styles.title}>📓 Мій Щоденник</h2>
+          <h2 className={`${styles.title} ${!isDarkMode ? styles.light : {}}`}>
+            {" "}
+            📓 Мій Щоденник
+          </h2>
 
           <div className={styles.form}>
             <textarea
               placeholder="Поділись своїми думками..."
               value={newNote}
               onChange={(e) => setNewNote(e.target.value)}
-              className={styles.textarea}
+              className={`${styles.textarea} ${
+                !isDarkMode ? styles.lightTextarea : {}
+              }`}
             />
             <button
               onClick={handleAddNote}
-              className={`${styles.button} ${styles.mainBtn}`}
+              className={`${styles.button} ${styles.mainBtn} ${
+                !isDarkMode ? styles.lightBtn : {}
+              }`}
             >
               ➕ Додати нотатку
             </button>
@@ -90,7 +99,12 @@ const Notes = () => {
           ) : (
             <div className={styles.notesList}>
               {notes.map(({ id, text, date }) => (
-                <div key={id} className={styles.noteCard}>
+                <div
+                  key={id}
+                  className={`${styles.noteCard}  ${
+                    !isDarkMode ? styles.lightTextarea : {}
+                  }`}
+                >
                   <div className={styles.noteHeader}>
                     <span className={styles.noteDate}>{date}</span>
                     <button
@@ -101,7 +115,9 @@ const Notes = () => {
                     </button>
                   </div>
                   <p
-                    className={styles.noteText}
+                    className={`${styles.noteText}  ${
+                      !isDarkMode ? styles.lightTextarea : {}
+                    }`}
                     onClick={() => openEditModal(id, text)}
                     title="Натисніть для редагування"
                   >
