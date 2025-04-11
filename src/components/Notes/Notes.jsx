@@ -142,11 +142,15 @@ const Notes = () => {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3>Редагувати нотатку</h3>
+            <h3 className={` ${!isDarkMode ? styles.light : {}}`}>
+              Редагувати нотатку
+            </h3>
             <textarea
               value={editedText}
               onChange={(e) => setEditedText(e.target.value)}
-              className={styles.textarea}
+              className={`${styles.textarea} ${
+                !isDarkMode ? styles.lightTextarea : []
+              }`}
               rows={5}
             />
             <div className={styles.modalButtons}>

@@ -107,9 +107,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
-  max-height: 600px; /* або будь-яка інша висота, яка тобі зручна */
-  overflow-y: auto;
-  padding-right: 4px; /* щоб не обрізався скролбар */
+  max-height: 400px; /* або будь-яка інша висота, яка тобі зручна */
+  overflow-y: scroll;
+  padding-right: 10px; /* щоб не обрізався скролбар */
 }
 
 .noteCard {
@@ -194,13 +194,13 @@
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  color: #e5e7eb;
 }
 
 .modal h3 {
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.25rem;
-  color: #111827;
 }
 
 .modal textarea {
@@ -210,9 +210,10 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 1rem;
-  background-color: #f9fafb;
+  background-color: black;
   min-height: 120px;
-  color: #111827;
+  color: #f3f4f6;
+  /* color: #e5e7eb; */
 }
 
 .modalButtons {
@@ -242,8 +243,8 @@
   color: #111827;
 }
 .lightTextarea {
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #f9fafb !important;
+  color: #111827 !important;
 }
 .lightBtn {
   color: #111827;
