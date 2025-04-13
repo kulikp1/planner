@@ -3,12 +3,12 @@ import styles from "./Notes.module.css";
 import clsx from "clsx";
 import NavBar from "../Navbar/Navbar";
 import { IoMdTrash } from "react-icons/io";
-import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
+import { useTheme } from "../../context/ThemeContext";
 
 const LOCAL_STORAGE_KEY = "diaryNotes";
 
 const Notes = () => {
-  const { isDarkMode } = useTheme(); // використовуємо тему
+  const { isDarkMode } = useTheme();
   const [notes, setNotes] = useState(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
