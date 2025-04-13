@@ -64,7 +64,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 2px; /* товщина рамки */
+  padding: 2px;
   border-radius: inherit;
   background: linear-gradient(270deg, #3b82f6, #9333ea, #ec4899, #3b82f6);
   background-size: 400% 400%;
@@ -93,7 +93,7 @@
 
 .button:hover {
   background-color: #12151b;
-  transform: scale(1.05); /* легке збільшення */
+  transform: scale(1.05);
 }
 
 .empty {
@@ -107,9 +107,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
-  max-height: 350px; /* або будь-яка інша висота, яка тобі зручна */
+  max-height: 350px;
   overflow-y: scroll;
-  padding-right: 10px; /* щоб не обрізався скролбар */
+  padding-right: 10px;
 }
 
 .noteCard {
@@ -213,7 +213,6 @@
   background-color: black;
   min-height: 120px;
   color: #f3f4f6;
-  /* color: #e5e7eb; */
 }
 
 .modalButtons {
@@ -253,7 +252,7 @@
 .lightBtn:hover {
   color: #111827;
   background-color: #f3f4f6;
-  transform: scale(1.05); /* легке збільшення */
+  transform: scale(1.05);
 }
 
 .lightDelete {
