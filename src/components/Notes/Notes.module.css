@@ -36,6 +36,12 @@
   min-height: 100px;
 }
 
+textarea:focus {
+  outline: none;
+  border: 1px solid #a855f7; /* приклад: фіолетовий бордер */
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5); /* м’яке світіння */
+}
+
 .button {
   width: 200px;
   position: relative;
