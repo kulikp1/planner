@@ -7,7 +7,7 @@ import { parse, format } from "date-fns";
 import { uk } from "date-fns/locale";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
+import { useTheme } from "../../context/ThemeContext";
 import { IoAddOutline } from "react-icons/io5";
 
 const EVENTS_PER_PAGE = 3;
@@ -16,7 +16,7 @@ const UpcomingEvents = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [addedEvents, setAddedEvents] = useState({});
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme(); // використовуємо тему
+  const { isDarkMode } = useTheme();
 
   const totalPages = Math.ceil(events.length / EVENTS_PER_PAGE);
   const startIndex = (currentPage - 1) * EVENTS_PER_PAGE;
