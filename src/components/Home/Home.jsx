@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import styles from "./Home.module.css";
 import logo from "../../assets/Logo.png";
-import { useTheme } from "../../context/ThemeContext"; // імпорт контексту теми
+import { useTheme } from "../../context/ThemeContext";
 
 export default function Home() {
   const navigate = useNavigate();
-  const { isDarkMode } = useTheme(); // використовуємо тему
+  const { isDarkMode } = useTheme();
 
   return (
     <div className={styles.container}>
